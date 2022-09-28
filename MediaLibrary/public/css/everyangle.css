@@ -1,0 +1,13 @@
+body{
+    background: #f5f5f5;
+}
+
+.title{
+    background: rgb(129 61 129);
+    border: 1px solid #000000;
+    font-family: "Times New Roman" , "courier";
+}
+
+.navc{
+    background-color: rgb(129 61 129);
+}
