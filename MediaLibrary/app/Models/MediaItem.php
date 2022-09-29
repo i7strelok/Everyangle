@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MediaType;
 
-class Category extends Model
+class MediaItem extends Model
 {
     use HasFactory;
-
-    protected $table = 'categories';
-    protected $fillable = ['name', 'media_type_id'];
+    protected $table = 'media_items';
+    protected $fillable = ['name', 'description', 'media_type_id', 'filename'];
 
     public function mediatype()
 	{
-		return $this->belongsTo(MediaType::class, 'media_type_id');
+		return $this->belongsTo(MediaType::class);
 	}
 }

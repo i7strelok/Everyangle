@@ -24,12 +24,25 @@
                         <form method="POST" action="{{ route('categories.update', $category) }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
+                            <!-- Insert the new name -->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="name">Name</label>
                                 </div> 
                                 <input id="name" name="name" type="text" placeholder="Insert name of category" class="form-control" value="{{ old('name', $category->name) }}" required>
                             </div>
+                            <!-- Select a media type-->
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="media_type_id">Select a media type</label>
+                                </div>
+                                <select class="custom-select" name="media_type_id" id="media_type_id">
+                                @foreach($mediatypes as $mediatype)  
+                                    <option value="{{ $mediatype->id }}" {{ ($mediatype->id == old('media_type_id', $category->media_type_id))? 'selected':'' }}>{{ $mediatype->name }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <!-- Save Button -->
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-5">
                                     <button type="submit" class="btn btn-outline-custom text-white">Save</button>

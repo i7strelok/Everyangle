@@ -17,7 +17,7 @@
         <div class="table-responsive-sm justify-content-center mt-5 table-borderless">
             <div class="row mb-5">
                 <div class="col-auto" style="padding-top: 10px">
-                    <legend class="verde-t mb4 h3">List of Media Types</legend>
+                    <legend class="mb4 h3">List of Media Types</legend>
                 </div>
                 <div class="col">
                     <a href="{{ route('mediatypes.create') }}" class="btn btn-outline-custom text-white float-right" title="Create a new media type" style="padding-bottom:10px">Create new</a>

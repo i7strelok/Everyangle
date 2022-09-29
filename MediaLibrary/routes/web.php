@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
 Route::resource('mediatypes', App\Http\Controllers\MediaTypeController::class);
-
+Route::resource('mediaitems', App\Http\Controllers\MediaItemController::class);

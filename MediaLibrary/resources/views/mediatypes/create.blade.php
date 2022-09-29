@@ -19,10 +19,11 @@
     <div class="row justify-content-center" style="padding-top: 10px">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white" style="background-color: #813D81;">Create new MediaType</div>
+                <div class="card-header text-white" style="background-color: #813D81;">Create new Media Type</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('mediatypes.store') }}">
                         @csrf
+                            <!-- Insert the name -->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="name">Name</label>

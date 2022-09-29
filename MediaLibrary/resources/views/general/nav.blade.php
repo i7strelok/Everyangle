@@ -50,7 +50,7 @@
                             <a class="nav-link text-white" href="{{ url('/') }}">Inicio</a>
                         </li>                           
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="route('items.index')">Media Items</a>
+                            <a class="nav-link text-white" href="{{ route('mediaitems.index') }}">Media Items</a>
                         </li>
                         <li class="nav-item navbar-text">
                             <a class="nav-link text-white" href="{{ route('categories.index') }}">Categories</a>

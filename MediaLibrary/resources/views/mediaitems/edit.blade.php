@@ -19,31 +19,20 @@
     <div class="row justify-content-center" style="padding-top: 10px">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white" style="background-color: #813D81;">Create new Category</div>
+                <div class="card-header text-white" style="background-color: #813D81;">Edit MediaType</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('categories.store') }}">
-                        @csrf
-                            <!-- Insert the name -->
+                        <form method="POST" action="{{ route('mediatypes.update', $mediatype) }}">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="name">Name</label>
                                 </div> 
-                                <input id="name" name="name" type="text" placeholder="Insert name of category" class="form-control" value="{{ old('name') }}" required>
-                            </div>
-                            <!-- Select a media type-->
-                            <div class="input-group mb-4">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="media_type_id">Select a media type</label>
-                                </div>
-                                <select class="custom-select" name="media_type_id" id="media_type_id">
-                                @foreach($mediatypes as $mediatype)  
-                                    <option value="{{ $mediatype->id }}" {{ ($mediatype->id == old('media_type_id'))? 'selected':'' }}>{{ $mediatype->name }}</option>
-                                @endforeach
-                                </select>
+                                <input id="name" name="name" type="text" placeholder="Insert name of media type" class="form-control" value="{{ old('name', $mediatype->name) }}" required>
                             </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-5">
-                                    <button type="submit" class="btn btn-outline-custom text-white">Create</button>
+                                    <button type="submit" class="btn btn-outline-custom text-white">Save</button>
                                 </div>
                             </div>
                          </form>
