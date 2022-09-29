@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
-
+Route::resource('mediatypes', App\Http\Controllers\MediaTypeController::class);
 

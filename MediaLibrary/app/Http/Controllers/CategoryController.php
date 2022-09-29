@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(1);
+        $categories = Category::paginate(10);
         return view('categories.index', compact('categories'));
     }
 
@@ -91,6 +91,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('status', 'The new category was successfully deleted'); 
+        return redirect()->route('categories.index')->with('status', 'The category was successfully deleted'); 
     }
 }

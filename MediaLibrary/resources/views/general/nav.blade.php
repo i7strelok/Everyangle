@@ -50,13 +50,13 @@
                             <a class="nav-link text-white" href="{{ url('/') }}">Inicio</a>
                         </li>                           
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="route('items.index')">Items</a>
+                            <a class="nav-link text-white" href="route('items.index')">Media Items</a>
                         </li>
                         <li class="nav-item navbar-text">
                             <a class="nav-link text-white" href="{{ route('categories.index') }}">Categories</a>
                         </li>
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="route('mediafiles.index')">Media Files</a>
+                            <a class="nav-link text-white" href="{{ route('mediatypes.index') }}">Media Types</a>
                         </li>
                         <li class="nav-item navbar-text">
                             <a class="nav-link text-white" href="route('users.index')">Users</a>
