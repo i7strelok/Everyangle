@@ -5,16 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
     <title>Media Library</title>
 
     <!--Boostrap 4-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Boostrap-select.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
     <!-- Material Icons Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,12 +19,15 @@
     <!-- Ico -->
     <link rel="icon" type="image/ico" href="{{ asset('png/favicon.png') }}" />
 
-    <!-- EveryAngle Custom Colors -->
+    <!-- Custom Everyangle Colors-->
     <link rel="stylesheet" type="text/css" href="/css/everyangle.css"/>
 
-    <!-- JQuery 3.5.1 -->
+    <!--JQuery 3.5.1-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!--Bootstrap 4-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
 	 @yield('head')
 </head>
 
@@ -53,7 +53,7 @@
                             <a class="nav-link text-white" href="route('items.index')">Items</a>
                         </li>
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="route('categories.index')">Categories</a>
+                            <a class="nav-link text-white" href="{{ route('categories.index') }}">Categories</a>
                         </li>
                         <li class="nav-item navbar-text">
                             <a class="nav-link text-white" href="route('mediafiles.index')">Media Files</a>

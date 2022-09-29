@@ -11,3 +11,47 @@ body{
 .navc{
     background-color: rgb(129 61 129);
 }
+
+table td{
+    padding: 0.1rem!important;
+    vertical-align: top!important;
+    border-top: 1px solid #dee2e6!important;
+}
+
+.trc{
+    background-color:rgb(129 61 129);
+}
+
+  .material-icons.md-10 { font-size: 10px; } 
+  .material-icons.md-24 { font-size: 24px; } 
+  .material-icons.md-36 { font-size: 36px; } 
+  .material-icons.md-48 { font-size: 48px; } 
+  /* Rules for using icons as black on a light background. */ 
+  .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); } 
+  .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); } 
+  /* Rules for using icons as white on a dark background. */ 
+  .material-icons.md-light { color: rgba(255, 255, 255, 1); } 
+  .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+  /*Btn on/off*/
+  .slow  .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
+
+
+/*Custom bottom color*/
+.btn-outline-custom{
+    background-color: rgb(129 61 129);
+    border-color: rgb(129 61 129);
+}
+  
+.btn-outline-custom:focus{
+    box-shadow: 0 0 0 0.2rem rgb(170, 111, 170);
+    -webkit-box-shadow: 0 0 0 0.2rem rgb(170, 111, 170);
+    outline: 0;
+}
+  
+.btn-outline-custom:hover,
+.btn-outline-custom:active{
+    color: #fff;
+      background-color: rgb(170, 111, 170);
+      border-color: rgb(170, 111, 170);
+}
