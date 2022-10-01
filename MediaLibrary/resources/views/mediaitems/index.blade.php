@@ -28,6 +28,8 @@
                 <thead>
                     <tr class ="trc text-white">
                         <th>Name</th>
+                        <th>Media Type</th>
+                        <th>Description</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -35,6 +37,8 @@
                 @forelse($mediaitems as $mediaitem) 
                 <tr>
                     <td scope="row"> {{ $mediaitem->name }} </td>
+                    <td scope="row"> {{ $mediaitem->media_type }} </td>
+                    <td scope="row"> {{ $mediaitem->description }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
                         <a href="{{ route('mediaitems.show', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the media item"><i class="material-icons mic">visibility</i></a> &nbsp 

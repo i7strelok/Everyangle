@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\MediaItem;
-use App\Models\MediaType;
+//use App\Models\MediaType;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreMediaItemRequest;
+use App\Http\Requests\UpdateMediaItemRequest;
 class MediaItemController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +27,7 @@ class MediaItemController extends Controller
      */
     public function index()
     {
+        //$mediaitems = MediaItem::with('mediatype')->paginate(10);
         $mediaitems = MediaItem::paginate(10);
         return view('mediaitems.index', compact('mediaitems'));
     }
@@ -26,7 +39,8 @@ class MediaItemController extends Controller
      */
     public function create()
     {
-        $mediatypes = MediaType::all();
+        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('mediaitems.create', compact('mediatypes'));
     }
 
@@ -36,15 +50,17 @@ class MediaItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMediaItemRequest $request)
     {
-        $fields = request()->validate([
-            'name' => 'required|unique:media_items|max:60|min:2',
-            'description' => 'max:200',
-            'media_type_id' => 'required|numeric|exists:media_types,id', 
-            'filename' => 'required', 
-        ]);
-        MediaItem::create($fields);
+        //Retrieve the validated input data...
+        $validated=$request->safe();
+        $path = Storage::putFile('public/files', $validated['file']);
+        $mediaItem = new MediaItem;
+        $mediaItem->name = $validated['name'];
+        $mediaItem->description = $validated['description'];
+        $mediaItem->media_type = $validated['media_type']; //\App\MediaTypes\MediaTypeEnum::MUSIC;
+        $mediaItem->filename = $path;
+        $mediaItem->save();
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully created');
     }
 
@@ -77,12 +93,13 @@ class MediaItemController extends Controller
      * @param  \App\Models\MediaItem  $mediaitem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MediaItem $mediaitem)
+    public function update(UpdateMediaItemRequest $request, MediaItem $mediaitem)
     {
-        $fields = request()->validate([
-            'name' => 'required|max:60|min:2|unique:media_items,name,'.$mediaitem->id,
-        ]);
-        $mediaitem->update($fields);
+        //Retrieve the validated input data...
+        $validated=$request->safe();
+        $mediaitem->name = $validated['name'];
+        $mediaitem->description = $validated['description'];
+        $mediaitem->update();
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully updated');
     }
 
@@ -94,6 +111,9 @@ class MediaItemController extends Controller
      */
     public function destroy(MediaItem $mediaitem)
     {
+        if (Storage::exists($mediaitem->filename)) {
+            Storage::delete('/'.$mediaitem->filename);
+        }
         $mediaitem->delete();
         return redirect()->route('mediaitems.index')->with('status', 'The media item was successfully deleted'); 
     }

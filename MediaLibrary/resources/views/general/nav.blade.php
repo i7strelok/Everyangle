@@ -12,12 +12,12 @@
 
     <!--Boostrap 4-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
     <!-- Material Icons Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Ico -->
-    <link rel="icon" type="image/ico" href="{{ asset('png/favicon.png') }}" />
+    <link rel="icon" type="image/ico" href="{{ asset('images/favicon.png') }}" />
 
     <!-- Custom Everyangle Colors-->
     <link rel="stylesheet" type="text/css" href="/css/everyangle.css"/>
@@ -53,14 +53,22 @@
                             <a class="nav-link text-white" href="{{ route('mediaitems.index') }}">Media Items</a>
                         </li>
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="{{ route('categories.index') }}">Categories</a>
-                        </li>
-                        <li class="nav-item navbar-text">
                             <a class="nav-link text-white" href="{{ route('mediatypes.index') }}">Media Types</a>
                         </li>
                         <li class="nav-item navbar-text">
-                            <a class="nav-link text-white" href="route('users.index')">Users</a>
-                        </li>                        
+                            <a class="nav-link text-white" href="{{ route('categories.index') }}">Categories</a>
+                        </li>
+                        <li class="nav-item navbar-text dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown">My account</a>
+                            <div class="dropdown-menu bg-dark">
+                                <a class="nav-link text-white dropdown-item bg" href="" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Sign out
+                                </a>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </li>                     
                     </ul>
                 </div>
             </div>

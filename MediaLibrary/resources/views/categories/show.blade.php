@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-white" style="background-color: #813D81;">
-                Viewing a category
+                Viewing a Category
                 <div class="float-right">
                         <a href="{{ route('categories.index', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Go back"><i class="material-icons mic">reply</i></a> &nbsp 
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="material-icons mic">edit</i></a> &nbsp
@@ -34,9 +34,9 @@
                     </div>
                     <!-- Showing the media type -->
                     <div class="row mb-3">
-                        <label for="media_type_name" class="col-md-4 col-form-label text-md-end">Media Type</label>
+                        <label for="media_type" class="col-md-4 col-form-label text-md-end">Media Type</label>
                         <div class="col-md-6">
-                            <input id="media_type_name" type="text" class="form-control" name="media_type_name" value="{{ $category->mediatype->name }}" autofocus disabled="true">
+                            <input id="media_type" type="text" class="form-control" name="media_type" value="{{ $category->media_type->value }}" autofocus disabled="true">
                         </div>
                     </div>
                 </div>

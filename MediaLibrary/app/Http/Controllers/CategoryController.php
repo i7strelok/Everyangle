@@ -10,13 +10,24 @@ use Validator;
 class CategoryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = Category::with('mediatype')->paginate(10);
+        //$categories = Category::with('mediatype')->paginate(10);
+        $categories = Category::paginate(10);
         return view('categories.index', compact('categories'));
     }
 
@@ -27,7 +38,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $mediatypes = MediaType::all();
+        //$mediatypes = MediaType::all();
+        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('categories.create', compact('mediatypes'));
     }
 
@@ -39,9 +52,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $mediaTypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        //$mediaTypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         $fields = request()->validate([
             'name' => 'required|unique:categories|max:60|min:2',
-            'media_type_id' => 'required|numeric|exists:media_types,id', 
+            'media_type' => 'required|string|in:'.implode(',', $mediaTypes), 
         ]);
         Category::create($fields);
         return redirect()->route('categories.index')->with('status', 'The category has been successfully created');
@@ -66,7 +81,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $mediatypes = MediaType::all();
+        //$mediatypes = MediaType::all();
+        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('categories.edit', compact('category', 'mediatypes'));
     }
 
@@ -79,9 +96,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        //$mediaTypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
+        $mediaTypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
         $fields = request()->validate([
             'name' => 'required|max:60|min:2|unique:categories,name,'.$category->id,
-            'media_type_id' => 'required|numeric|exists:media_types,id', 
+            'media_type' => 'required|string|in:'.strtolower(implode(',', $mediaTypes)), 
         ]);
         $category->update($fields);
         return redirect()->route('categories.index')->with('status', 'The category has been successfully updated');

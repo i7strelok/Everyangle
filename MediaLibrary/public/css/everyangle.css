@@ -55,3 +55,7 @@ table td{
       background-color: rgb(170, 111, 170);
       border-color: rgb(170, 111, 170);
 }
+
+.dropdown-item:focus, .dropdown-item:active, .dropdown-item:hover{
+    background-color: rgb(170, 111, 170); !important;
+}

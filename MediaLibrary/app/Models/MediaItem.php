@@ -4,16 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\MediaType;
-
+use App\Models\Category;
 class MediaItem extends Model
 {
     use HasFactory;
     protected $table = 'media_items';
-    protected $fillable = ['name', 'description', 'media_type_id', 'filename'];
+    protected $fillable = ['name', 'description', 'media_type', 'filename'];
+    
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    /*protected $casts = [ 
+        'media_type' => \App\MediaTypes\MediaTypeEnum::class 
+    ];*/
 
-    public function mediatype()
+    public function categories()
 	{
-		return $this->belongsTo(MediaType::class);
+		return $this->HasMany(Category::class);
 	}
+
 }

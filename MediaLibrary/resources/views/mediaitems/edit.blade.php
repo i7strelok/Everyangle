@@ -19,16 +19,24 @@
     <div class="row justify-content-center" style="padding-top: 10px">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-white" style="background-color: #813D81;">Edit MediaType</div>
+                <div class="card-header text-white" style="background-color: #813D81;">Edit MediaItem</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('mediatypes.update', $mediatype) }}">
+                        <form method="POST" action="{{ route('mediaitems.update', $mediaitem) }}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
+                            <!-- Edit the name -->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="name">Name</label>
                                 </div> 
-                                <input id="name" name="name" type="text" placeholder="Insert name of media type" class="form-control" value="{{ old('name', $mediatype->name) }}" required>
+                                <input id="name" name="name" type="text" placeholder="Insert name of media type" class="form-control" value="{{ old('name', $mediaitem->name) }}" required>
+                            </div>
+                            <!-- Edit the description-->
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="description">Description</label>
+                                </div> 
+                                <input id="description" name="description" type="text" placeholder="Enter the media item description" class="form-control" value="{{ old('description', $mediaitem->description) }}">
                             </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-5">

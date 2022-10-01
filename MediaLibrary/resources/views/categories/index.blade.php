@@ -36,7 +36,7 @@
                 @forelse($categories as $category) 
                 <tr>
                     <td scope="row"> {{ $category->name }} </td>
-                    <td scope="row"> {{ $category->mediatype->name }} </td>
+                    <td scope="row"> {{ $category->media_type }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
                         <a href="{{ route('categories.show', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the category"><i class="material-icons mic">visibility</i></a> &nbsp 

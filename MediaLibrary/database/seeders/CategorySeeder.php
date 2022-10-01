@@ -22,7 +22,7 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             'id' => 1,
 	        'name' => 'Category 1',
-            'media_type_id' => 1,
+            'media_type' => \App\MediaTypes\MediaTypeEnum::MUSIC,
         ]);
     }
 }

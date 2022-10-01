@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header text-white" style="background-color: #813D81;">Add new Media Item</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('mediaitems.store') }}">
+                        <form method="POST" action="{{ route('mediaitems.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
                             <!-- Insert the name-->
                             <div class="input-group mb-4">
@@ -33,22 +33,22 @@
                             <!-- Select a media type-->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="media_type_id">Select a media type</label>
+                                    <label class="input-group-text" for="media_type">Select a media type</label>
                                 </div>
-                                <select class="custom-select" name="media_type_id" id="media_type_id">
+                                <select class="custom-select" name="media_type" id="media_type">
                                 @foreach($mediatypes as $mediatype)  
-                                    <option value="{{ $mediatype->id }}" {{ ($mediatype->id == old('media_type_id'))? 'selected':'' }}>{{ $mediatype->name }}</option>
+                                    <option value="{{ $mediatype }}" {{ ($mediatype == old('media_type'))? 'selected':'' }}>{{ $mediatype }}</option>
                                 @endforeach
                                 </select>
                             </div>
                             <!-- File input -->
-                            <div class="mb-4 input-group">
+                            <div class="input-group mb-4">
                                 <div class="float-left">
-                                    <label class="input-group-prepend btn trc btn-sm text-white">Choose a media item
-                                    <input type="file" name="filename" style="display: none;"></label>
+                                    <label class="input-group-prepend btn trc btn-sm text-white">Upload a media item
+                                    <input type="file" name="file" style="display: none;"></label>
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload your media item">
+                                    <input class="file-path validate" type="text" placeholder="Upload your media item" class="form-control">
                                 </div>
                             </div>
                             <!-- Insert a description-->

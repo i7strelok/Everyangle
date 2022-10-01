@@ -34,11 +34,11 @@
                             <!-- Select a media type-->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
-                                    <label class="input-group-text" for="media_type_id">Select a media type</label>
+                                    <label class="input-group-text" for="media_type">Select a media type</label>
                                 </div>
-                                <select class="custom-select" name="media_type_id" id="media_type_id">
+                                <select class="custom-select" name="media_type" id="media_type">
                                 @foreach($mediatypes as $mediatype)  
-                                    <option value="{{ $mediatype->id }}" {{ ($mediatype->id == old('media_type_id', $category->media_type_id))? 'selected':'' }}>{{ $mediatype->name }}</option>
+                                    <option value="{{ $mediatype }}" {{ ($mediatype == old('media_type', $category->media_type->value))? 'selected':'' }}>{{ $mediatype }}</option>
                                 @endforeach
                                 </select>
                             </div>

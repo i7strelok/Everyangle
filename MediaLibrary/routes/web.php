@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route definition...
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
-Route::resource('mediatypes', App\Http\Controllers\MediaTypeController::class);
+Route::get('/mediatypes', [App\Http\Controllers\MediaTypeController::class, 'index'])->name('mediatypes.index');
+Route::get('/mediatypes/{mediatype}', [App\Http\Controllers\MediaTypeController::class, 'show'])->name('mediatypes.show');
 Route::resource('mediaitems', App\Http\Controllers\MediaItemController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
