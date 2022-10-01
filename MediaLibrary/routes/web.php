@@ -24,3 +24,4 @@ Route::resource('mediaitems', App\Http\Controllers\MediaItemController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/{category}/', [App\Http\Controllers\HomeController::class, 'showMediaItemsByCategory'])->name('home.categories');

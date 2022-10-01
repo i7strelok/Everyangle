@@ -22,7 +22,7 @@ class MediaItem extends Model
 
     public function categories()
 	{
-		return $this->HasMany(Category::class);
+		return $this->belongsToMany(Category::class);
 	}
 
 }

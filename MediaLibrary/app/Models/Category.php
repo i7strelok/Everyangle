@@ -23,7 +23,7 @@ class Category extends Model
 
     public function mediaItems()
 	{
-		return $this->hasMany(MediaItem::class);
+		return $this->belongsToMany(MediaItem::class, 'category_mediaitem');
 	}
 
 	public static function boot() 

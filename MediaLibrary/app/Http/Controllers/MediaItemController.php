@@ -60,6 +60,7 @@ class MediaItemController extends Controller
         $mediaItem->description = $validated['description'];
         $mediaItem->media_type = $validated['media_type']; //\App\MediaTypes\MediaTypeEnum::MUSIC;
         $mediaItem->filename = $path;
+        //$mediaItem->categories()->attach($validated['categores']); //Attaching columns selected
         $mediaItem->save();
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully created');
     }
@@ -99,6 +100,8 @@ class MediaItemController extends Controller
         $validated=$request->safe();
         $mediaitem->name = $validated['name'];
         $mediaitem->description = $validated['description'];
+        //$mediaitem->categories()->detach(); //Detaching current columns
+        //$mediaitem->categories()->attach($validated['columns']); //Attaching columns selected
         $mediaitem->update();
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully updated');
     }

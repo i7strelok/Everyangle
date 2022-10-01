@@ -16,13 +16,50 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        /*Category::create([
-            'name'=> 'Music',
-        ]);*/
-        DB::table('categories')->insert([
-            'id' => 1,
-	        'name' => 'Category 1',
-            'media_type' => \App\MediaTypes\MediaTypeEnum::MUSIC,
+        //Creating default categories
+        Category::create([
+            'name'=> 'Pop',
+            'media_type' => 'Music',
+        ]);
+
+        Category::create([
+            'name'=> 'Rock',
+            'media_type' => 'Music',
+        ]);
+
+        Category::create([
+            'name'=> 'Metal',
+            'media_type' => 'Music',
+        ]);
+
+        Category::create([
+            'name'=> 'Western',
+            'media_type' => 'Movies',
+        ]);
+
+        Category::create([
+            'name'=> 'Action',
+            'media_type' => 'Movies',
+        ]);
+
+        Category::create([
+            'name'=> 'Comedy',
+            'media_type' => 'Movies',
+        ]);
+
+        Category::create([
+            'name'=> 'Sport',
+            'media_type' => 'Games',
+        ]);
+
+        Category::create([
+            'name'=> 'Puzzlers',
+            'media_type' => 'Games',
+        ]);
+
+        Category::create([
+            'name'=> 'Shooters',
+            'media_type' => 'Games',
         ]);
     }
 }
