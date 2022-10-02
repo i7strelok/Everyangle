@@ -8,40 +8,65 @@ The requirements have been provided by Mr. Piotr Gospodarczyk, however, these wi
 Selection of technologies
 
 The technologies selected for the realization of this project are:
+
 PHP	8.1.6
+
 Laravel Framework	9.33.0
-HTML	-
-Javascript	-
-CSS	-
+
+HTML
+
+Javascript
+
+CSS
+
 JQuery	3.5.1
+
 Bootstrap	4.3.1
+
 PHPUnit (included in Laravel)	8
 
 Coding Conventions
 
 In order to achieve a high level of technical interoperability between shared PHP code, it is always advisable to follow Code Conventions, and this project will be no exception.
+
 In order to achieve the above, the following standards will be used:
+
 1-	PSR-1: Basic Coding Standard
+
 2-	PSR-2: Coding Style Guide
+
 Below are some examples of both standards:
+
 PSR-1: Basic Coding Standard
+
 -	Class names MUST be declared in StudlyCaps.
+
 -	Class constants MUST be declared in all upper case with underscore separators.
+
 -	Method names MUST be declared in camelCase.
+
 PSR-2: Coding Style Guide
+
 -	Code MUST use 4 spaces for indenting, not tabs.
+
 -	There MUST NOT be a hard limit on line length; the soft limit MUST be 120 characters; lines SHOULD be 80 characters or less.
+
 -	There MUST be one blank line after the namespace declaration, and there MUST be one blank line after the block of use declarations.
 
 Testing
 
 Testing is a fundamental part, since it evaluates the quality of the software. 
 According to Glen Myers, software testing has the following objectives:
+
 1)	The process of investigating and checking a program to find whether there is an error or not and does it fulfill the requirements or not is called testing.
+
 2)	When the number of errors found during the testing is high, it indicates that the testing was good and is a sign of good test case.
+
 3)	Finding an unknown error that’s wasn’t discovered yet is a sign of a successful and a good test case. 
+
 PHPUnit is a programmer-oriented testing framework for PHP. A unit test consists of checking the correct functioning of a developed functionality. The objective of unit tests is to demonstrate that each functionality works correctly and to find problems in the initial phases of software development.
 In all my developments I consider the use of PHPUnit essential.
+
 In order to run the unit tests, run the following command: php artisan test
 
 Code Clarifications
@@ -68,18 +93,26 @@ Instructions
 The commands that should be executed to clone the repository and run the server on localhost will be detailed. Make sure you have Apache, Mysql, Php, Composer, etc. Before running the migration, create an .env file with the database connection settings.
 
 git clone https://github.com/i7strelok/Everyangle.git
+
 composer install
+
 php artisan migrate (press yes)
+
 php artisan migrate:refresh –seed
+
 php artisan key:generate
+
 php artisan serve
 
 
 Credentials for software testing
+
 The following table details credentials to log in and test the system
-Email	Password
+
 piotr@everyangle.ai	@PiotrCTO@EveryAngle
-fergal@everyangle.ai	@FergalHR@EveryAngle
+
+fergal@everyangle.ai @FergalHR@EveryAngle
+
 david@everyangle.ai	@DavidCEO@EveryAngle
 
 
