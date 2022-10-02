@@ -20,7 +20,9 @@ class MediaItemController extends Controller
      */
     public function __construct()
     {
+        //Only for authenticated users
         $this->middleware('auth');
+        //The following are only allowed to be executed if the user is the author
         $this->middleware('isauthor')->only(['edit', 'update', 'destroy']);
     }
     

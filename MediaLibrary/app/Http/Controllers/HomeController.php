@@ -15,6 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        //Only for authenticated users
         $this->middleware('auth');
     }
 
@@ -37,6 +38,14 @@ class HomeController extends Controller
         return view('home', compact('categories', 'mediaItems', 'images'));
     }
 
+    /**
+     * Receive a category and get all Media Items in that category
+     *
+     * @param Category   $category  category
+     * 
+     * @author Carlos Fernández <fernandez.carlos@outlook.es>
+     * @return \Illuminate\Contracts\Support\Renderable
+     */ 
     public function showMediaItemsByCategory (Category $category)
     {   
         if($category == NULL)
@@ -44,6 +53,14 @@ class HomeController extends Controller
         return view('mediaitems', compact('category'));
     }
 
+    /**
+     * Receive a Media Item to play
+     *
+     * @param MediaItem   $mediaitem  Receive the MediaItem to be played
+     * 
+     * @author Carlos Fernández <fernandez.carlos@outlook.es>
+     * @return \Illuminate\Contracts\Support\Renderable
+     */ 
     public function playMediaItem(MediaItem $mediaitem){
         if($mediaitem == NULL)
             abort(404, "The Media Item was not found");

@@ -21,9 +21,13 @@ class Category extends Model
         'media_type' => \App\MediaTypes\MediaTypeEnum::class, 
     ];*/
 
+    /**
+     * A function that creates a relationship between resources
+     *
+     * @author Carlos Fernández <fernandez.carlos@outlook.es>
+     */     
     public function mediaitems()
 	{
-		//return $this->hasMany(MediaItem::class, 'category_media_item');
         return $this->belongsToMany(
             MediaItem::class,
             'category_media_item',
@@ -31,6 +35,11 @@ class Category extends Model
             'media_item_id');
 	}
 
+    /**
+     * Function that is executed when deleting a category
+     *
+     * @author Carlos Fernández <fernandez.carlos@outlook.es>
+     */ 
 	public static function boot() 
     {
         parent::boot();

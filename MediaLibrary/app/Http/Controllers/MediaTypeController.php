@@ -42,6 +42,12 @@ class MediaTypeController extends Controller
         return view('mediatypes.index', compact('mediatypes'));
     }
 
+    /**
+     * Get all the categories for a Media Type.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json
+     */    
     public function getCategories(Request $request){
         $data = [];
         try {

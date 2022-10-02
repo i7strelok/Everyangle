@@ -68,7 +68,12 @@ class User extends Authenticatable
             set: fn ($value) => strtolower($value),
         );
     }
-
+    
+    /**
+     * A function that creates a relationship between resources
+     *
+     * @author Carlos Fernández <fernandez.carlos@outlook.es>
+     */ 
     public function mediaItems()
 	{
 		return $this->belongsToMany(MediaItem::class);
