@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
 class MediaTypeController extends Controller
 {
     /**
@@ -21,7 +23,6 @@ class MediaTypeController extends Controller
      */
     public function index()
     {
-        //$mediatypes = MediaType::paginate(10);
         $mediatypes = [];
         $games = new \App\MediaTypes\GamesMediaType;
         $movies = new \App\MediaTypes\MoviesMediaType;
@@ -41,15 +42,19 @@ class MediaTypeController extends Controller
         return view('mediatypes.index', compact('mediatypes'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MediaType  $mediatype
-     * @return \Illuminate\Http\Response
-     */
-    public function show(MediaType $mediatype)
-    {
-        return view('mediatypes.show', compact('mediatype'));
+    public function getCategories(Request $request){
+        $data = [];
+        try {
+            $mediaType = $request->input('media_type');
+            $categories = Category::where('media_type', '=', $mediaType)->get();
+            foreach($categories as $category){
+                $data[]= ['id' => $category->id, 'name' => $category->name];
+            }
+            $response = ['data' => $data];
+            return response()->json($response);
+        }catch (\Exception $e) {
+            return response()->json([ 'message' => 'There was an error retrieving the records'.$e->getMessage()], 404);
+        }        
     }
 
 }

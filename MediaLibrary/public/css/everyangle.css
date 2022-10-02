@@ -59,3 +59,7 @@ table td{
 .dropdown-item:focus, .dropdown-item:active, .dropdown-item:hover{
     background-color: rgb(170, 111, 170); !important;
 }
+
+.custom-select:focus, .custom-select:active, .custom-select:hover{
+    border-color: rgb(129 61 129);  box-shadow: none; -webkit-box-shadow: none;
+}

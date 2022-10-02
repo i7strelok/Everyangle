@@ -30,13 +30,20 @@ class HomeController extends Controller
         return view('home', compact('categories', 'mediaItems'));
     }
 
-    public function showMediaItemsByCategory (Request $request)
-    {
-        /*$fields = request()->validate([
-            'id' => 'required|exists:categories,id', 
-        ]);*/
-        $category = Category::with('mediaItems')->where('id', '=', $request->id)->get();
-        $mediaItems = $category->mediaItems();           
-        return view('mediaitems', compact('mediaItems'));
+    public function showMediaItemsByCategory (Category $category)
+    {   
+        if($category == NULL)
+            abort(404, "The Category was not found");
+        return view('mediaitems', compact('category'));
+    }
+
+    public function playMediaItem(MediaItem $mediaitem){
+        if($mediaitem == NULL)
+            abort(404, "The Media Item was not found");
+        else{
+            $view = $mediaitem->play();
+            return view($view);  
+        }
+        
     }
 }

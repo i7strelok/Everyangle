@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreMediaItemRequest;
 use App\Http\Requests\UpdateMediaItemRequest;
+use App\Models\Category;
+
 class MediaItemController extends Controller
 {
     /**
@@ -28,7 +30,7 @@ class MediaItemController extends Controller
     public function index()
     {
         //$mediaitems = MediaItem::with('mediatype')->paginate(10);
-        $mediaitems = MediaItem::paginate(10);
+        $mediaitems = MediaItem::paginate(7);
         return view('mediaitems.index', compact('mediaitems'));
     }
 
@@ -60,8 +62,8 @@ class MediaItemController extends Controller
         $mediaItem->description = $validated['description'];
         $mediaItem->media_type = $validated['media_type']; //\App\MediaTypes\MediaTypeEnum::MUSIC;
         $mediaItem->filename = $path;
-        //$mediaItem->categories()->attach($validated['categores']); //Attaching columns selected
         $mediaItem->save();
+        $mediaItem->categories()->attach($validated['categories']); //Attaching columns selected
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully created');
     }
 
@@ -84,7 +86,10 @@ class MediaItemController extends Controller
      */
     public function edit(MediaItem $mediaitem)
     {
-        return view('mediaitems.edit', compact('mediaitem'));
+        //Getting all the categories of this specific media_type
+        $categories = Category::where('media_type', '=', $mediaitem->media_type)->get();
+        $categoriesSelected = $mediaitem->categories()->getQuery()->pluck('category_id')->toArray();
+        return view('mediaitems.edit', compact('mediaitem', 'categories','categoriesSelected'));
     }
 
     /**
@@ -100,9 +105,9 @@ class MediaItemController extends Controller
         $validated=$request->safe();
         $mediaitem->name = $validated['name'];
         $mediaitem->description = $validated['description'];
-        //$mediaitem->categories()->detach(); //Detaching current columns
-        //$mediaitem->categories()->attach($validated['columns']); //Attaching columns selected
         $mediaitem->update();
+        $mediaitem->categories()->detach(); //Detaching current columns
+        $mediaitem->categories()->attach($validated['categories']); //Attaching columns selected
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully updated');
     }
 

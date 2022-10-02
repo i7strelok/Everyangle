@@ -27,6 +27,8 @@ class UpdateMediaItemRequest extends FormRequest
         $rules = [
             'name' => 'required|unique:media_items,name,'.$mediaItem->id,
             'description' => 'max:200',
+            'categories' => 'required',
+            'categories.*' => 'exists:categories,id',
         ];
         return $rules;  
     }

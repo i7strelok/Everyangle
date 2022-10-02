@@ -15,6 +15,29 @@
     </div>
 @endif
 
+<style type="text/css">
+    .bootstrap-select>.dropdown-toggle.bs-placeholder{
+        color: #495057 !important;
+    }
+
+    .bootstrap-select .dropdown-menu li a.dropdown-item:focus, .bootstrap-select .dropdown-menu li a.dropdown-item:active, .bootstrap-select .dropdown-menu li a.dropdown-item:hover{
+        border-left: 3px solid #679A07 !important;
+        background-color: white !important;
+    }
+
+    span.bs-ok-default.check-mark{
+        color: #679A07 !important;
+    }
+
+    li:focus{
+        outline-color: #679A07 !important;
+    }
+
+    #app > div > div > div > div > form > fieldset > div:nth-child(6) > div > button{
+        outline: none !important;
+    }
+
+</style>
 <div class="container">
     <div class="row justify-content-center" style="padding-top: 10px">
         <div class="col-md-8">
@@ -51,6 +74,13 @@
                                     <input class="file-path validate" type="text" placeholder="Upload your media item" class="form-control">
                                 </div>
                             </div>
+
+                            <!-- Categories -->
+                            <div class="input-group mb-4">
+                                <select class="custom-select" data-width="100%" title="Choose Categories" name="categories[]" id="categories" data-old="{{ old('categories') }}" multiple> <!--data-live-search="true" -->
+                                </select>
+                            </div>
+
                             <!-- Insert a description-->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
@@ -78,4 +108,58 @@
     </div>
 </div>
 
+@section('script')
+<script type="text/javascript">
+
+    window.onload = function(){
+        setup();
+        loadCategories();
+    };
+
+    function setup() {
+        this.document.getElementById('media_type').setAttribute("onchange", "loadCategories()");
+    }
+
+    function loadCategories(){
+        setTimeout(function(){
+        id = document.getElementById('media_type').value;
+        xhttp = new XMLHttpRequest();    
+        xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                        selectTag           = document.getElementById("categories");
+                        selectTag.innerHTML = "";
+                        optionTags          = "";
+                        response   = JSON.parse(JSON.parse(JSON.stringify(this.responseText)));
+                        console.log(response)
+                        if (response.data.length > 0) {
+                            response.data.forEach(function(value, index, array){
+                                optionTags +=   `<option value="${response.data[index].id}">
+                                                    ${response.data[index].name}
+                                                </option>
+                                                `;
+                            });
+                        }else{
+                            optionTags +=   `<option disabled>
+                                                El equipo no tiene límites para ningún tipo de medida
+                                            </option>
+                                            `;
+                        }
+                        selectTag.insertAdjacentHTML("beforeend", optionTags);
+
+
+                };
+            };
+
+            xhttp.open("GET", "{{ route('getcategories') }}" + "?media_type=" + id, true); 
+            xhttp.send();
+        }, 400);
+    }
+
+    function updateCategories() {
+        options = document.querySelectorAll("#categories > option");
+    }
+
+</script>
+@endsection
 @endsection

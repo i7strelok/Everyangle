@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function index()
     {
         //$categories = Category::with('mediatype')->paginate(10);
-        $categories = Category::paginate(10);
+        $categories = Category::paginate(7);
         return view('categories.index', compact('categories'));
     }
 

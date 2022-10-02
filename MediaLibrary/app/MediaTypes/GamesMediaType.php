@@ -1,7 +1,6 @@
 <?php
 
 namespace App\MediaTypes;
-
 class GamesMediaType extends AbstractMediaType{
     public function getMimeTypes(): array{
         return [
@@ -13,7 +12,12 @@ class GamesMediaType extends AbstractMediaType{
         return 'Games';
     }
 
-    public function play(string $filename): string{
-        return 'Playing Game: '.$filename;
+    public function play(string $filename){
+        //Here all the code to play this game file $filename
+        return 'play.games';
+    }
+
+    public function getImage(): string{
+        return 'image1';
     }
 }

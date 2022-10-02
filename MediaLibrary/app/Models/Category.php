@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'categories';
-    protected $fillable = ['name', 'media_type'];
+    protected $fillable = ['id', 'name', 'media_type'];
 
     /**
      * The attributes that should be cast.
@@ -21,9 +21,14 @@ class Category extends Model
         'media_type' => \App\MediaTypes\MediaTypeEnum::class, 
     ];*/
 
-    public function mediaItems()
+    public function mediaitems()
 	{
-		return $this->belongsToMany(MediaItem::class, 'category_mediaitem');
+		//return $this->hasMany(MediaItem::class, 'category_media_item');
+        return $this->belongsToMany(
+            MediaItem::class,
+            'category_media_item',
+            'category_id',
+            'media_item_id');
 	}
 
 	public static function boot() 

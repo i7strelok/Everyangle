@@ -31,6 +31,17 @@
                                 </div> 
                                 <input id="name" name="name" type="text" placeholder="Insert name of media type" class="form-control" value="{{ old('name', $mediaitem->name) }}" required>
                             </div>
+                            <!-- Select different categories-->
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="categories">Categories</label>
+                                </div>
+                                <select class="custom-select" name="categories[]" id="categories" multiple>
+                                @foreach($categories as $category)  
+                                    <option value="{{ $category->id }}" {{ (in_array($category->id, $categoriesSelected)) ? 'selected':'' }}>{{ $category->name }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                             <!-- Edit the description-->
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">

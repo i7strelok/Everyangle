@@ -13,7 +13,12 @@ class MusicMediaType extends AbstractMediaType{
         return 'Music';
     }
 
-    public function play(string $filename): string{
-        return 'Playing Music: '.$filename;
+    public function play(string $filename){
+        //Here all the code to play this music file $filename
+        return 'play.music';
+    }
+
+    public function getImage(): string{
+        return 'image3';
     }
 }

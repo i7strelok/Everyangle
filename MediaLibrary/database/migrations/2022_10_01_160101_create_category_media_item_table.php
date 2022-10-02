@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('category_media_item', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('media_item_id');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('media_item_id')->references('id')->on('media_items')->onUpdate('cascade')->onDelete('cascade');
+            $table->primary(['category_id', 'media_item_id']);
             $table->timestamps();
         });
     }

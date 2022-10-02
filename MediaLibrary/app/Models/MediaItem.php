@@ -9,7 +9,7 @@ class MediaItem extends Model
 {
     use HasFactory;
     protected $table = 'media_items';
-    protected $fillable = ['name', 'description', 'media_type', 'filename'];
+    protected $fillable = ['id', 'name', 'description', 'media_type', 'filename'];
     
     /**
      * The attributes that should be cast.
@@ -23,6 +23,19 @@ class MediaItem extends Model
     public function categories()
 	{
 		return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(
+            Category::class,
+            'category_media_item',
+            'media_item_id',
+            'category_id');
 	}
+
+    public function play(): string{
+        $mediaTypes = \App\MediaTypes\AbstractMediaType::getMediaTypes();
+        if(isset($mediaTypes[$this->media_type])){
+            $view = $mediaTypes[$this->media_type]->play($this->filename);
+            return $view;
+        }        
+    }
 
 }

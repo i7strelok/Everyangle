@@ -29,6 +29,9 @@ class StoreMediaItemRequest extends FormRequest
             'name' => 'required|unique:media_items|max:60|min:2',
             'description' => 'max:200',
             'media_type' => 'required|string|in:'.implode(',', array_keys($mediaTypes)), 
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+            
         ];
 
         if(isset($mediaTypes[$mediaTypeName])){

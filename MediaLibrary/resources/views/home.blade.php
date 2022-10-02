@@ -30,7 +30,7 @@
 
     <div class="card-columns">
     @forelse ($mediaItems as $mediaItem)
-        <a href="route('productos.index')" style="color: black;">
+        <a href="{{ route('play', $mediaItem) }}" style="color: black;">
             <div class="card text-center">
                 <div class="card-body">
                     <h1 class="card-title">{{ $mediaItem->name }}</h1>

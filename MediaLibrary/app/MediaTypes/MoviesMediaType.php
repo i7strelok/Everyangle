@@ -13,7 +13,12 @@ class MoviesMediaType extends AbstractMediaType{
         return 'Movies';
     }
 
-    public function play(string $filename): string{
-        return 'Playing Movie: '.$filename;
+    public function play(string $filename){
+        //Here all the code to play this movie file $filename
+        return 'play.movies';
+    }
+
+    public function getImage(): string{
+        return 'image2';
     }
 }
