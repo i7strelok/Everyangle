@@ -20,7 +20,9 @@
                 <div class="float-right">
                     <a href="{{ route('mediaitems.index', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Go back"><i class="material-icons mic">reply</i></a> &nbsp 
                     <a href="{{ route('play', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Play"><i class="material-icons mic">play_circle</i></a> &nbsp
+                    @if(Auth::user()->id === $mediaitem->user_id)
                     <a href="{{ route('mediaitems.edit', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="material-icons mic">edit</i></a> &nbsp
+                    @endif
                 </div>
                 </div>    
                 <div class="card-body">

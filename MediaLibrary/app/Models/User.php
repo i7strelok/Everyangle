@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-
+use App\Models\MediaItem;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -68,4 +68,9 @@ class User extends Authenticatable
             set: fn ($value) => strtolower($value),
         );
     }
+
+    public function mediaItems()
+	{
+		return $this->belongsToMany(MediaItem::class);
+	}
 }

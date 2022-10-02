@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use App\Models\User;
 class MediaItem extends Model
 {
     use HasFactory;
     protected $table = 'media_items';
-    protected $fillable = ['id', 'name', 'description', 'media_type', 'filename'];
+    protected $fillable = ['id', 'name', 'description', 'media_type', 'filename', 'user_id'];
     
     /**
      * The attributes that should be cast.
@@ -24,6 +25,12 @@ class MediaItem extends Model
 	{
 		return $this->belongsToMany(Category::class);
 	}
+
+    public function author()
+	{
+		return $this->belongsTo(User::class);
+	}
+
 
     public function play(): string{
         $mediaTypes = \App\MediaTypes\MediaType::getMediaTypes();

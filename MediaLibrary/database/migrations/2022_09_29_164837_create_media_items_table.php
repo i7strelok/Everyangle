@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-//use App\Models\MediaType;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('filename');
             $table->unique('filename');
             $table->enum("media_type", ["Movies", "Games", "Music"]);
-            //$table->foreignIdFor(MediaType::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreMediaItemRequest;
 use App\Http\Requests\UpdateMediaItemRequest;
 use App\Models\Category;
+use Auth;
 
 class MediaItemController extends Controller
 {
@@ -20,6 +21,7 @@ class MediaItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isauthor')->only(['edit', 'update', 'destroy']);
     }
     
     /**
@@ -29,7 +31,6 @@ class MediaItemController extends Controller
      */
     public function index()
     {
-        //$mediaitems = MediaItem::with('mediatype')->paginate(10);
         $mediaitems = MediaItem::paginate(7);
         return view('mediaitems.index', compact('mediaitems'));
     }
@@ -62,6 +63,7 @@ class MediaItemController extends Controller
         $mediaItem->description = $validated['description'];
         $mediaItem->media_type = $validated['media_type']; //\App\MediaTypes\MediaTypeEnum::MUSIC;
         $mediaItem->filename = $path;
+        $mediaItem->user_id = Auth::user()->id;
         $mediaItem->save();
         $mediaItem->categories()->attach($validated['categories']); //Attaching columns selected
         return redirect()->route('mediaitems.index')->with('status', 'The media item has been successfully created');
