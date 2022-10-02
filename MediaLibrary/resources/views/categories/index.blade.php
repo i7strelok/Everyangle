@@ -39,7 +39,7 @@
                     <td scope="row"> {{ $category->media_type }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
-                    <a href="{{ route('home.categories', $category->id) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Explore the category"><i class="material-icons mic">travel_explore</i></a> &nbsp 
+                        <a href="{{ route('home.categories', $category->id) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Explore the category"><i class="material-icons mic">travel_explore</i></a> &nbsp 
                         <a href="{{ route('categories.show', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the category"><i class="material-icons mic">visibility</i></a> &nbsp 
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit the category"><i class="material-icons mic">edit</i></a> &nbsp    
                         <span data-toggle="modal" data-target="#confirmDeletion">

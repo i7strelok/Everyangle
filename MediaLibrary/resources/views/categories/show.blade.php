@@ -17,11 +17,9 @@
                 <div class="card-header text-white" style="background-color: #813D81;">
                 Viewing a Category
                 <div class="float-right">
-                        <a href="{{ route('categories.index', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Go back"><i class="material-icons mic">reply</i></a> &nbsp 
-                        <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="material-icons mic">edit</i></a> &nbsp
-                        <span data-toggle="modal" data-target="#confirmDeletion">
-                            <button class="btn btn-sm btn-danger text-white" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="material-icons mic">delete</i></button>
-                        </span>
+                    <a href="{{ route('categories.index', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Go back"><i class="material-icons mic">reply</i></a> &nbsp 
+                    <a href="{{ route('home.categories', $category->id) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Explore the category"><i class="material-icons mic">travel_explore</i></a> &nbsp 
+                    <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="material-icons mic">edit</i></a> &nbsp
                 </div>
                 </div>    
                 <div class="card-body">
@@ -36,7 +34,7 @@
                     <div class="row mb-3">
                         <label for="media_type" class="col-md-4 col-form-label text-md-end">Media Type</label>
                         <div class="col-md-6">
-                            <input id="media_type" type="text" class="form-control" name="media_type" value="{{ $category->media_type->value }}" autofocus disabled="true">
+                            <input id="media_type" type="text" class="form-control" name="media_type" value="{{ $category->media_type }}" autofocus disabled="true">
                         </div>
                     </div>
                 </div>
