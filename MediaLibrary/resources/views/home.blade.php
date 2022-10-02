@@ -16,7 +16,7 @@
     @forelse ($categories as $category)
         <a href="{{ route('home.categories', $category->id) }}" style="color: black;">
             <div class="card text-center">
-                <img src="{{ url('/images/music.jpg') }}" class="card-img-top">
+                <img src="{{ url($images[$category->media_type]) }}" class="card-img-top">
                 <div class="card-body">
                     <h1 class="card-title">{{ $category->name }}</h1>
                     <p class="card-text">{{ $category->media_type }}</p>

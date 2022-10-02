@@ -25,9 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $images = [];
+        $mediaTypes = \App\MediaTypes\MediaType::getMediaTypes();
         $categories = Category::latest()->take(3)->get();
+        foreach($categories as $category){
+            if(isset($mediaTypes[$category->media_type])){
+                $images[$category->media_type] = $mediaTypes[$category->media_type]->getImage();
+            }
+        }
         $mediaItems = MediaItem::latest()->take(9)->get();
-        return view('home', compact('categories', 'mediaItems'));
+        return view('home', compact('categories', 'mediaItems', 'images'));
     }
 
     public function showMediaItemsByCategory (Category $category)

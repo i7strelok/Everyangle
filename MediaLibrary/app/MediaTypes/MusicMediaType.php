@@ -19,6 +19,6 @@ class MusicMediaType implements MediaTypeInterface{
     }
 
     public function getImage(): string{
-        return 'image3';
+        return 'images/music.jpg';
     }
 }

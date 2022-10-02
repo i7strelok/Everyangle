@@ -18,6 +18,6 @@ class GamesMediaType implements MediaTypeInterface{
     }
 
     public function getImage(): string{
-        return 'image1';
+        return 'images/games.jpg';
     }
 }

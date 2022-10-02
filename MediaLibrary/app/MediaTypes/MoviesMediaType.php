@@ -19,6 +19,6 @@ class MoviesMediaType implements MediaTypeInterface{
     }
 
     public function getImage(): string{
-        return 'image2';
+        return 'images/movies.jpg';
     }
 }
