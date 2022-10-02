@@ -38,20 +38,24 @@
                             <input id="name" type="text" class="form-control" name="name" value="{{ $mediaitem->media_type }}" autofocus disabled="true">
                         </div>
                     </div>
-                    <!-- Downloading the file -->
+                    <!-- A select to show categories-->
                     <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">Media Item</label>
+                        <label class="col-md-4 col-form-label text-md-end" for="categories">Categories</label>
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name" value="{{ $mediaitem->filename }}" autofocus disabled="true">
+                            <select class="custom-select" name="categories" id="categories" disabled="true">
+                            @foreach($categories as $category)   
+                                <option>{{ $category }}</option>
+                            @endforeach
+                            </select>
                         </div>
-                    </div>    
-                    <!-- Showing the description -->
+                    </div>                     
+                    <!-- Showing the description -->       
                     <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">Description</label>
+                        <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name" value="{{ $mediaitem->description }}" autofocus disabled="true">
+                            <textarea class="form-control z-depth-1" id="description" rows="3" placeholder="{{ $mediaitem->description }}" disabled="true"></textarea>
                         </div>
-                    </div>                                    
+                    </div>                         
                 </div>
                 @if($errors->any())
                   @foreach($errors->all() as $error)

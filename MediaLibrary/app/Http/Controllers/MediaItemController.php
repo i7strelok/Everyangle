@@ -75,7 +75,8 @@ class MediaItemController extends Controller
      */
     public function show(MediaItem $mediaitem)
     {
-        return view('mediaitems.show', compact('mediaitem'));
+        $categories = $mediaitem->categories()->getQuery()->pluck('name')->toArray();
+        return view('mediaitems.show', compact('mediaitem', 'categories'));
     }
 
     /**
