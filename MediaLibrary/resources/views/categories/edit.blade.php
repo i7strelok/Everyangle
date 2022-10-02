@@ -38,7 +38,7 @@
                                 </div>
                                 <select class="custom-select" name="media_type" id="media_type">
                                 @foreach($mediatypes as $mediatype)  
-                                    <option value="{{ $mediatype }}" {{ ($mediatype == old('media_type', $category->media_type->value))? 'selected':'' }}>{{ $mediatype }}</option>
+                                    <option value="{{ $mediatype }}" {{ ($mediatype == old('media_type', $category->media_type))? 'selected':'' }}>{{ $mediatype }}</option>
                                 @endforeach
                                 </select>
                             </div>
