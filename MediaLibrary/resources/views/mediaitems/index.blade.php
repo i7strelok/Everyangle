@@ -41,6 +41,7 @@
                     <td scope="row"> {{ $mediaitem->description }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
+                        <a href="{{ route('play', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Play the media item"><i class="material-icons mic">play_circle</i></a> &nbsp 
                         <a href="{{ route('mediaitems.show', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the media item"><i class="material-icons mic">visibility</i></a> &nbsp 
                         <a href="{{ route('mediaitems.edit', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit the media item"><i class="material-icons mic">edit</i></a> &nbsp    
                         <span data-toggle="modal" data-target="#confirmDeletion">

@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function create()
     {
         //$mediatypes = MediaType::all();
-        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        $mediatypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('categories.create', compact('mediatypes'));
     }
@@ -52,7 +52,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $mediaTypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        $mediaTypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         //$mediaTypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         $fields = request()->validate([
             'name' => 'required|unique:categories|max:60|min:2',
@@ -82,7 +82,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //$mediatypes = MediaType::all();
-        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        $mediatypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('categories.edit', compact('category', 'mediatypes'));
     }
@@ -97,7 +97,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //$mediaTypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
-        $mediaTypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        $mediaTypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         $fields = request()->validate([
             'name' => 'required|max:60|min:2|unique:categories,name,'.$category->id,
             'media_type' => 'required|string|in:'.strtolower(implode(',', $mediaTypes)), 

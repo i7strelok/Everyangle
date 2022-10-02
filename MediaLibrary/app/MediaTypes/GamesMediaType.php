@@ -1,7 +1,7 @@
 <?php
 
 namespace App\MediaTypes;
-class GamesMediaType extends AbstractMediaType{
+class GamesMediaType implements MediaTypeInterface{
     public function getMimeTypes(): array{
         return [
             'swf' => 'application/x-shockwave-flash',

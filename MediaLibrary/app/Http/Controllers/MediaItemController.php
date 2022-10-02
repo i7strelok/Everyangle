@@ -41,7 +41,7 @@ class MediaItemController extends Controller
      */
     public function create()
     {
-        $mediatypes = array_keys(\App\MediaTypes\AbstractMediaType::getMediaTypes());
+        $mediatypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         //$mediatypes = \App\MediaTypes\MediaTypeEnum::getAllValues();
         return view('mediaitems.create', compact('mediatypes'));
     }

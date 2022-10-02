@@ -2,7 +2,7 @@
 
 namespace App\MediaTypes;
 
-class MusicMediaType extends AbstractMediaType{
+class MusicMediaType implements MediaTypeInterface{
     public function getMimeTypes(): array{
         return [
             'mp3' => 'audio/mpeg', //According to RFC 3003: https://www.rfc-editor.org/rfc/rfc3003

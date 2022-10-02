@@ -23,15 +23,10 @@ class MediaItem extends Model
     public function categories()
 	{
 		return $this->belongsToMany(Category::class);
-        return $this->belongsToMany(
-            Category::class,
-            'category_media_item',
-            'media_item_id',
-            'category_id');
 	}
 
     public function play(): string{
-        $mediaTypes = \App\MediaTypes\AbstractMediaType::getMediaTypes();
+        $mediaTypes = \App\MediaTypes\MediaType::getMediaTypes();
         if(isset($mediaTypes[$this->media_type])){
             $view = $mediaTypes[$this->media_type]->play($this->filename);
             return $view;

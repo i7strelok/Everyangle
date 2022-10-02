@@ -24,7 +24,7 @@ class StoreMediaItemRequest extends FormRequest
     public function rules()
     {
         $mediaTypeName = $this->request->get('media_type');
-        $mediaTypes = \App\MediaTypes\AbstractMediaType::getMediaTypes();
+        $mediaTypes = \App\MediaTypes\MediaType::getMediaTypes();
         $rules = [
             'name' => 'required|unique:media_items|max:60|min:2',
             'description' => 'max:200',
