@@ -40,7 +40,7 @@ class Category extends Model
      *
      * @author Carlos Fernández <fernandez.carlos@outlook.es>
      */ 
-	public static function boot() 
+	/*public static function boot() 
     {
         parent::boot();
         static::deleting(function($category){
@@ -48,6 +48,7 @@ class Category extends Model
                 $mediaItem->delete(); //For each MediaItem of this category
             });
         });
-    }
+    }*/
 
 }
+

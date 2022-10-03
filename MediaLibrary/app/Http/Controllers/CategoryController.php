@@ -93,8 +93,7 @@ class CategoryController extends Controller
     {
         $mediaTypes = array_keys(\App\MediaTypes\MediaType::getMediaTypes());
         $fields = request()->validate([
-            'name' => 'required|max:60|min:2|unique:categories,name,'.$category->id,
-            'media_type' => 'required|string|in:'.strtolower(implode(',', $mediaTypes)), 
+            'name' => 'required|max:60|min:2|unique:categories,name,'.$category->id, 
         ]);
         $category->update($fields);
         return redirect()->route('categories.index')->with('status', 'The category has been successfully updated');
@@ -108,6 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->mediaitems()->detach(); //Detaching mediaitems
         $category->delete();
         return redirect()->route('categories.index')->with('status', 'The category was successfully deleted'); 
     }
