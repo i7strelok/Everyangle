@@ -141,7 +141,7 @@
                             });
                         }else{
                             optionTags +=   `<option disabled>
-                                                El equipo no tiene límites para ningún tipo de medida
+                                                There are no categories for that Media Type
                                             </option>
                                             `;
                         }

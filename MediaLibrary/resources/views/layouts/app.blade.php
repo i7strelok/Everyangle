@@ -22,8 +22,10 @@
     <!--<link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}"> -->
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
+    <!--JQuery 3.5.1-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- Boostrap-select.js -->
@@ -43,9 +45,10 @@
         <nav class="navbar navbar-light navbar-expand-lg navc text-white">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img class="img-responsive" src="{{ asset('images/everyangle_logo_white.png') }}" alt="{{ config('app.name', 'WEG Autrial') }}">
+                    <img class="img-responsive d-none d-sm-none d-md-block" src="{{ asset('images/everyangle_logo_white.png') }}" alt="{{ config('app.name', 'Everyangle') }}">
+                    <p class="d-block d-sm-block d-md-none">{{ config('app.name', 'Everyangle') }}</p>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 

@@ -39,16 +39,17 @@
                     <td scope="row"> {{ $category->media_type }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
+                        <div class="btn-group" role="group" aria-label="Button group">
                         <a href="{{ route('home.categories', $category->id) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Explore the category"><i class="material-icons mic">travel_explore</i></a> &nbsp 
                         <a href="{{ route('categories.show', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the category"><i class="material-icons mic">visibility</i></a> &nbsp 
                         <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit the category"><i class="material-icons mic">edit</i></a> &nbsp    
-                        <span data-toggle="modal" data-target="#confirmDeletion">
-                            <button id="{{ 'delete-button-'.$loop->index }}" class="btn btn-sm btn-danger text-white" data-toggle="modal" data-target="#showModal" data-placement="bottom" title="Delete the category" onclick=""><i class="material-icons mic">delete</i></button>
-                        </span>
-                        <script type="text/javascript">
-                            var path = {!! json_encode(route('categories.destroy', $category), JSON_HEX_TAG) !!};
-                            document.getElementById("{{ 'delete-button-'.$loop->index }}").setAttribute("onclick", "actionSwitch('" + String(path) + "');");
-                        </script>
+                        <form method="post" action="{{route('categories.destroy',$category)}}">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" onclick="return confirm('Are you sure that you want to delete this category?')"
+                            class="btn btn-danger btn-sm"><i class="material-icons mic">delete</i></button>
+                        </form>
+                        </div>
                     </div>
                     </td>                  
                 </tr>
@@ -65,33 +66,37 @@
  
 
 
+
+
+@if(@isset($category))
     <!-- Modal -->
-    @if(@isset($category))
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
-       <div class="modal-dialog" role="document">
-           <div class="modal-content">
-               <div class="modal-header">
-                   <h5 class="modal-title" id="showModalLabel">Do you want to delete this category?</h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">&times;</span>
-                   </button>
-               </div>
-               <div class="modal-body">
-                   This action can not be undone.
-               </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                   <a href="{{ route('categories.destroy', $category) }}" class="btn btn-danger text-white" onclick="event.preventDefault();document.getElementById('delete-form').submit();">Delete</a>
-               </div>
-            </div>
-         </div>
+    <div class="modal fade" id="confirmDeletion" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+          <div class="modal-header bg-dark">
+            <h4 class="modal-title verde-t" id="exampleModalCenterTitle">@lang('Warning!')</h4>
+          </div>
+          <div class="modal-body text-white">
+            <h5>
+                @lang('You are about to delete an area. This operation can not be undone.') <br><br> 
+                @lang('Are you sure you wish to proceed?')
+            </h5>
+          </div>
+          <div class="modal-footer bg-dark">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Cancel')</button>
+            <a id="delete-link" href="{{ route('categories.destroy', $category) }}" class="btn verde-b text-white" onclick="
+                                            event.preventDefault();
+                                            document.getElementById('delete-form').submit();">@lang('Confirm')</a>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- Delete form -->
-    <form method="POST" id="delete-form" action="{{ route('categories.destroy', $category) }}">
+    <form method="POST" id="delete-form" action="">
         {{ method_field('DELETE') }}
         {{ csrf_field() }}
     </form>
-
 @endif
 
 @endsection

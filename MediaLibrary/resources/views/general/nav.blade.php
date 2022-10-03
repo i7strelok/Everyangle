@@ -37,7 +37,8 @@
         <nav class="navbar navbar-light navbar-expand-lg text-white navc">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    <img class="img-responsive" src="{{ asset('images/everyangle_logo_white.png') }}" alt="{{ config('app.name', 'Media Library') }}">
+                    <img class="img-responsive d-none d-sm-none d-md-block" src="{{ asset('images/everyangle_logo_white.png') }}" alt="{{ config('app.name', 'Everyangle') }}">
+                    <p class="d-block d-sm-block d-md-none">{{ config('app.name', 'Everyangle') }}</p>
                 </a>
                 <div class="navbar-nav flex-grow-0">
                     <button class="navbar-toggler justify-content-end" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">

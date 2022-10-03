@@ -39,18 +39,18 @@
                     <td scope="row"> {{ $mediaitem->media_type }} </td>
                     <td class="p-1 align-middle">
                     <div class="float-right">
+                        <div class="btn-group" role="group" aria-label="Button group">
                         <a href="{{ route('play', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Play the media item"><i class="material-icons mic">play_circle</i></a> &nbsp 
                         <a href="{{ route('mediaitems.show', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Show the media item"><i class="material-icons mic">visibility</i></a> &nbsp 
                         @if(Auth::user()->id === $mediaitem->user_id)
                         <a href="{{ route('mediaitems.edit', $mediaitem) }}" class="btn btn-sm btn-outline-custom text-white" data-toggle="tooltip" data-placement="bottom" title="Edit the media item"><i class="material-icons mic">edit</i></a> &nbsp    
-                        <span data-toggle="modal" data-target="#confirmDeletion">
-                            <button id="{{ 'delete-button-'.$loop->index }}" class="btn btn-sm btn-danger text-white" data-toggle="modal" data-target="#showModal" data-placement="bottom" title="Delete the media item" onclick=""><i class="material-icons mic">delete</i></button>
-                        </span>
-                        @endif
-                        <script type="text/javascript">
-                            var path = {!! json_encode(route('mediaitems.destroy', $mediaitem), JSON_HEX_TAG) !!};
-                            document.getElementById("{{ 'delete-button-'.$loop->index }}").setAttribute("onclick", "actionSwitch('" + String(path) + "');");
-                        </script>
+                        <form method="post" action="{{route('mediaitems.destroy',$mediaitem)}}">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" onclick="return confirm('Are you sure that you want to delete this media item?')"
+                            class="btn btn-danger btn-sm"><i class="material-icons mic">delete</i></button>
+                        </form>
+                        </div>
                     </div>
                     </td>                  
                 </tr>
