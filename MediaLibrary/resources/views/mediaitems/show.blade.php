@@ -44,7 +44,7 @@
                     <div class="row mb-3">
                         <label class="col-md-4 col-form-label text-md-end" for="categories">Categories</label>
                         <div class="col-md-6">
-                            <select class="custom-select" name="categories" id="categories" disabled="true">
+                            <select class="custom-select" name="categories[]" id="categories" multiple disabled="true">
                             @foreach($categories as $category)   
                                 <option>{{ $category }}</option>
                             @endforeach

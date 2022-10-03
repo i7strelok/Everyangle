@@ -50,6 +50,7 @@
                             <button type="submit" onclick="return confirm('Are you sure that you want to delete this media item?')"
                             class="btn btn-danger btn-sm"><i class="material-icons mic">delete</i></button>
                         </form>
+                        @endif
                         </div>
                     </div>
                     </td>                  
